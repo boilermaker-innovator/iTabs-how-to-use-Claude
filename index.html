@@ -1,0 +1,1900 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude AI Guide - Advanced iTabs Demo</title>
+    <style>
+        :root {
+            --primary-color: #7C6AEC; /* Claude purple */
+            --secondary-color: #f7f6fe;
+            --text-color: #333;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --border-color: #7C6AEC;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        /* Page container */
+        .page-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+        }
+        
+        /* Main header */
+        .main-header {
+            background: linear-gradient(135deg, #7C6AEC 0%, #9D92F3 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .main-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .main-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Logo placeholder */
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .logo img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+        }
+        
+        .container {
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        /* Main tabs container */
+        .itabs-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        /* Tab navigation styling */
+        .tabs-nav {
+            display: flex;
+            background-color: var(--secondary-color);
+            position: relative;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tabs-nav::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            white-space: nowrap;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background-color: white;
+        }
+        
+        /* Tab content styling */
+        .tab-content {
+            display: none;
+            padding: 25px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Content styling elements */
+        .tab-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .tab-content h3 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 1.15rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .tab-content p {
+            margin-bottom: 15px;
+        }
+        
+        .tab-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .tab-content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background-color: rgba(124, 106, 236, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(124, 106, 236, 0.3);
+        }
+        
+        /* Footer styling */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .footer p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Nested iTabs styling - this is the key addition */
+        .nested-itab {
+            position: relative;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .itab-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: bold;
+            cursor: pointer;
+            vertical-align: middle;
+            transition: transform 0.2s ease;
+            margin-left: 6px;
+        }
+        
+        .itab-indicator:hover {
+            transform: scale(1.1);
+        }
+        
+        .nested-itab-content {
+            display: none;
+            position: absolute;
+            width: 350px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            padding: 20px;
+            z-index: 100;
+            border: 1px solid #ddd;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .nested-itab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        .nested-itab-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nested-itab-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f1f1;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Overlay for nested iTabs */
+        .itab-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 90;
+        }
+        
+        .itab-overlay.active {
+            display: block;
+        }
+        
+        /* Feature grid for advanced features */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        /* Code block styling */
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #e3e3e3;
+        }
+        
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        /* Example comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th {
+            background: var(--secondary-color);
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        /* Make it responsive */
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 25px 20px;
+            }
+            
+            .main-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .tab {
+                padding: 12px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nested-itab-content {
+                width: 300px;
+                max-width: 90vw;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="main-header">
+            <div class="logo">C</div>
+            <h1>Claude AI Guide</h1>
+            <p>The ultimate guide to getting the most out of Claude AI</p>
+        </div>
+        
+        <div class="container">
+            <div class="header">
+                <h2>Interactive Guide with Nested iTabs</h2>
+                <p>Click on tabs to explore topics, and look for "i" indicators for deeper information</p>
+            </div>
+            
+            <div class="itabs-container">
+                <div class="tabs-nav">
+                    <div class="tab active" data-tab="getting-started">Getting Started</div>
+                    <div class="tab" data-tab="effective-prompting">Effective Prompting</div>
+                    <div class="tab" data-tab="advanced-features">Advanced Features</div>
+                    <div class="tab" data-tab="use-cases">Use Cases</div>
+                    <div class="tab" data-tab="resources">Resources</div>
+                </div>
+                
+                <!-- Getting Started Tab -->
+                <div id="getting-started" class="tab-content active">
+                    <h2>Getting Started with Claude AI</h2>
+                    
+                    <p>Claude is an AI assistant created by Anthropic, designed to be helpful, harmless, and honest. This guide will help you get started and make the most of Claude's capabilities.</p>
+                    
+                    <h3>What is Claude AI?
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="claude-overview">i</span>
+                            <div id="claude-overview" class="nested-itab-content">
+                                <div class="nested-itab-title">About Claude AI</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude is a state-of-the-art AI assistant developed by Anthropic, a company founded by former members of OpenAI. It represents a new generation of AI systems designed with a focus on helpfulness, harmlessness, and honesty.</p>
+                                
+                                <h4>Key Differentiators</h4>
+                                <ul>
+                                    <li><strong>Constitutional AI</strong> - Built using a technique called Constitutional AI that helps align its behaviors with human values</li>
+                                    <li><strong>Safety-focused</strong> - Designed to refuse harmful or inappropriate requests</li>
+                                    <li><strong>Thoughtful responses</strong> - Provides nuanced, balanced answers to complex questions</li>
+                                    <li><strong>Long context window</strong> - Can process and remember lengthy conversations</li>
+                                </ul>
+                                
+                                <h4>Claude's Evolution</h4>
+                                <p>Claude has been through several generations since its initial release, with each version bringing significant improvements in capabilities, reasoning, and safety.</p>
+                                
+                                <h4>Company Background</h4>
+                                <p>Anthropic was founded in 2021 as a public benefit corporation focused on AI safety research. The company has received significant funding to pursue its mission of building reliable, interpretable, and steerable AI systems.</p>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude is a conversational AI assistant that can understand and generate human-like text. It's designed to be helpful across a wide range of tasks including writing, analysis, answering questions, creative work, coding assistance, and more.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Natural Conversation</div>
+                            <p>Claude maintains context throughout conversations and responds in a helpful, nuanced way to complex requests.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Knowledge Limitations</div>
+                            <p>Claude's knowledge has a cutoff date and it doesn't have real-time internet access (unless using the search tool).</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Safety Focus</div>
+                            <p>Claude is designed to refuse inappropriate requests and avoid harmful outputs.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>How to Access Claude
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="access-options">i</span>
+                            <div id="access-options" class="nested-itab-content">
+                                <div class="nested-itab-title">Detailed Access Options</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <h4>Web Interface (claude.ai)</h4>
+                                <p>The simplest way to use Claude is through the web interface at <a href="https://claude.ai" target="_blank">claude.ai</a>:</p>
+                                <ul>
+                                    <li>Free to use with basic account creation</li>
+                                    <li>Access to multiple Claude models</li>
+                                    <li>File upload capabilities</li>
+                                    <li>Web search functionality</li>
+                                    <li>Conversation history saved to your account</li>
+                                </ul>
+                                
+                                <h4>API Access</h4>
+                                <p>For developers and organizations wanting to integrate Claude into applications:</p>
+                                <ul>
+                                    <li>RESTful API with comprehensive documentation</li>
+                                    <li>Multiple model options with different capabilities/costs</li>
+                                    <li>Usage-based pricing</li>
+                                    <li>Streaming responses available</li>
+                                    <li>Support for file uploads and analysis</li>
+                                </ul>
+                                
+                                <h4>Third-Party Integrations</h4>
+                                <p>Claude is available through various platforms:</p>
+                                <ul>
+                                    <li><strong>Slack</strong>: Claude can be added to Slack workspaces</li>
+                                    <li><strong>Zoom</strong>: Integration available for meetings</li>
+                                    <li><strong>Various SaaS tools</strong>: Growing ecosystem of partnerships</li>
+                                </ul>
+                                
+                                <h4>Regional Availability</h4>
+                                <p>Claude is available in many countries but may have some regional restrictions. Check the official website for the most current availability information.</p>
+                            </div>
+                        </span>
+                    </h3>
+                    <ul>
+                        <li><strong>Web Interface:</strong> <a href="https://claude.ai" target="_blank">claude.ai</a> - Free to use with account creation</li>
+                        <li><strong>API:</strong> Available for developers to integrate Claude into applications</li>
+                        <li><strong>Third-party Integrations:</strong> Various platforms like Slack have Claude integrations</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Pro Tip:</strong> Claude is available in several model versions with different capabilities and costs. For personal use, the web interface offers access to powerful models for free.</p>
+                    </div>
+                    
+                    <h3>Claude Models Available
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="models-detail">i</span>
+                            <div id="models-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Claude Model Comparison</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude comes in several versions, each with different capabilities and performance characteristics:</p>
+                                
+                                <h4>Claude Opus</h4>
+                                <ul>
+                                    <li><strong>Capabilities</strong>: Anthropic's most powerful model</li>
+                                    <li><strong>Strengths</strong>: Complex reasoning, nuanced understanding, code generation</li>
+                                    <li><strong>Use cases</strong>: Research, complex analysis, advanced writing, sophisticated coding</li>
+                                    <li><strong>Context window</strong>: 200,000 tokens</li>
+                                    <li><strong>API pricing</strong>: Higher cost per token</li>
+                                </ul>
+                                
+                                <h4>Claude Sonnet</h4>
+                                <ul>
+                                    <li><strong>Capabilities</strong>: Balanced model for everyday tasks</li>
+                                    <li><strong>Strengths</strong>: Good balance of quality and speed</li>
+                                    <li><strong>Use cases</strong>: Content creation, customer support, data analysis</li>
+                                    <li><strong>Context window</strong>: 200,000 tokens</li>
+                                    <li><strong>API pricing</strong>: Medium cost per token</li>
+                                </ul>
+                                
+                                <h4>Claude Haiku</h4>
+                                <ul>
+                                    <li><strong>Capabilities</strong>: Fastest model for simple tasks</li>
+                                    <li><strong>Strengths</strong>: Speed, cost-efficiency</li>
+                                    <li><strong>Use cases</strong>: Quick responses, simple tasks, high-volume applications</li>
+                                    <li><strong>Context window</strong>: 200,000 tokens</li>
+                                    <li><strong>API pricing</strong>: Lowest cost per token</li>
+                                </ul>
+                                
+                                <p>Note: Exact model specifications may change over time as Anthropic releases updates.</p>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude comes in several variations, each with different capabilities:</p>
+                    <ul>
+                        <li><strong>Claude Opus:</strong> Most powerful model with advanced reasoning</li>
+                        <li><strong>Claude Sonnet:</strong> Balanced model for everyday tasks</li>
+                        <li><strong>Claude Haiku:</strong> Fastest model for simple tasks and quick responses</li>
+                    </ul>
+                    
+                    <h3>First-Time Setup</h3>
+                    <ol>
+                        <li>Visit <a href="https://claude.ai" target="_blank">claude.ai</a> in your web browser</li>
+                        <li>Create an account using your email or Google account</li>
+                        <li>Accept the terms of service</li>
+                        <li>Start a new conversation by typing in the input box</li>
+                    </ol>
+                    
+                    <a href="https://claude.ai" class="cta-button" target="_blank">Try Claude Now</a>
+                </div>
+
+                <!-- Effective Prompting Tab (with nested iTabs) -->
+                <div id="effective-prompting" class="tab-content">
+                    <h2>Effective Prompting Techniques</h2>
+                    
+                    <p>How you phrase your requests to Claude dramatically affects the quality of responses you receive. This section covers key prompting techniques to get the most out of Claude.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>What is prompt engineering?</strong> It's the skill of crafting inputs that guide AI systems toward desired outputs. With Claude, good prompts lead to better, more accurate, and more useful responses.</p>
+                    </div>
+                    
+                    <h3>Core Prompting Principles
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="principles-detail">i</span>
+                            <div id="principles-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Detailed Prompting Principles</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>These fundamental principles apply to virtually all interactions with Claude:</p>
+                                
+                                <h4>Be Specific and Clear</h4>
+                                <p>Claude can't read your mind. The more specific your request, the better the response. Compare:</p>
+                                <ul>
+                                    <li><strong>Vague:</strong> "Tell me about climate change."</li>
+                                    <li><strong>Specific:</strong> "Explain how climate change affects agricultural yields in the Midwest United States, focusing on corn and soybean production over the last decade."</li>
+                                </ul>
+                                
+                                <h4>Provide Context</h4>
+                                <p>Give Claude necessary background information:</p>
+                                <ul>
+                                    <li><strong>Without context:</strong> "Review this code."</li>
+                                    <li><strong>With context:</strong> "I'm a Python beginner trying to create a simple budget tracker. Please review this code, explain what each part does, and suggest improvements that would be understandable for someone at my level."</li>
+                                </ul>
+                                
+                                <h4>Use Clear Formatting</h4>
+                                <p>Structure your prompts with clear organization:</p>
+                                <ul>
+                                    <li>Use headings and sections for complex requests</li>
+                                    <li>Number your questions or requirements</li>
+                                    <li>Use bullet points for lists of items</li>
+                                    <li>Include line breaks between different parts of your prompt</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <ul>
+                        <li><strong>Be specific and clear</strong> about what you want</li>
+                        <li><strong>Provide context</strong> for your request (background, purpose, audience)</li>
+                        <li><strong>Use clear formatting</strong> to structure complex prompts</li>
+                        <li><strong>Specify output format</strong> when you need a particular structure</li>
+                    </ul>
+                    
+                    <h3>Prompt Templates
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="templates-detail">i</span>
+                            <div id="templates-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Effective Prompt Templates</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>These templates can be adapted for various use cases:</p>
+                                
+                                <h4>Writing Assistant Template</h4>
+                                <pre><code>I need help writing [type of content].
+                                
+Topic: [specific topic]
+Audience: [target audience]
+Tone: [desired tone - professional, casual, academic, etc.]
+Length: [approximate word count or structure]
+Key points to include:
+- [Point 1]
+- [Point 2]
+- [Point 3]
+
+Additional requirements: [any special requirements]</code></pre>
+
+                                <h4>Analysis Template</h4>
+                                <pre><code>I'd like you to analyze [topic/text/data].
+
+Focus on:
+1. [First aspect to analyze]
+2. [Second aspect to analyze]
+3. [Third aspect to analyze]
+
+Please structure your analysis with clear headings and include specific examples to support your points. Conclude with the most important insights and implications.</code></pre>
+
+                                <h4>Learning Template</h4>
+                                <pre><code>I want to learn about [topic].
+
+My current knowledge level: [beginner/intermediate/advanced]
+Specific aspects I'm interested in:
+- [Aspect 1]
+- [Aspect 2]
+
+Please explain key concepts in simple terms, provide real-world examples, and suggest resources for further learning.</code></pre>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Start with these proven templates and customize them for your needs:</p>
+                    <ul>
+                        <li><strong>Writing Assistant Template</strong> for content creation</li>
+                        <li><strong>Analysis Template</strong> for examining text, data, or concepts</li>
+                        <li><strong>Learning Template</strong> for educational content</li>
+                        <li><strong>Coding Assistant Template</strong> for programming help</li>
+                    </ul>
+                    
+                    <h3>Common Prompting Mistakes
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="mistakes-detail">i</span>
+                            <div id="mistakes-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Common Prompting Mistakes to Avoid</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>These errors can lead to suboptimal Claude responses:</p>
+                                
+                                <h4>Being Too Vague</h4>
+                                <p>Vague prompts lead to generic responses. Always be specific about what you need.</p>
+                                
+                                <h4>Overcomplicating Prompts</h4>
+                                <p>While details are good, some users make prompts needlessly complex with convoluted instructions or contradictory requirements.</p>
+                                
+                                <h4>Not Providing Enough Context</h4>
+                                <p>Claude doesn't know your specific situation unless you share it. Without proper context, Claude must make assumptions that may not align with your needs.</p>
+                                
+                                <h4>Asking Multiple Unrelated Questions</h4>
+                                <p>Combining unrelated questions in one prompt often results in less thorough answers to each question. Better to focus prompts on related topics.</p>
+                                
+                                <h4>Assuming Claude Has Certain Knowledge</h4>
+                                <p>Users sometimes assume Claude knows about recent events, specific documents, or personal context from previous conversations (beyond the current thread).</p>
+                                
+                                <h4>Not Specifying Output Format</h4>
+                                <p>When you need a specific format (tables, bullet points, code, etc.), explicitly request it rather than assuming Claude will choose the optimal format.</p>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Avoid these common errors that lead to poor results:</p>
+                    <ul>
+                        <li>Being too vague or ambiguous</li>
+                        <li>Overcomplicating your requests</li>
+                        <li>Not providing enough context</li>
+                        <li>Asking multiple unrelated questions at once</li>
+                        <li>Assuming Claude has knowledge it doesn't have</li>
+                    </ul>
+                    
+                    <h3>Before & After Examples
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="examples-detail">i</span>
+                            <div​​​​​​​​​​​​​​​​>
+
+                            <div id="examples-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Prompt Improvement Examples</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>See how prompts can be improved for better results:</p>
+                                
+                                <h4>Writing Assistant Example</h4>
+                                <div class="comparison-table">
+                                    <table>
+                                        <tr>
+                                            <th>Weak Prompt</th>
+                                            <th>Strong Prompt</th>
+                                        </tr>
+                                        <tr>
+                                            <td>"Write me an email about the project delay."</td>
+                                            <td>"Write a professional email to our client Acme Corp about a 2-week delay to the website redesign project. Explain that the delay is due to unexpected API integration issues, offer two potential solutions, and maintain our professional relationship. The tone should be apologetic but confident."</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                <h4>Research Example</h4>
+                                <div class="comparison-table">
+                                    <table>
+                                        <tr>
+                                            <th>Weak Prompt</th>
+                                            <th>Strong Prompt</th>
+                                        </tr>
+                                        <tr>
+                                            <td>"Tell me about renewable energy."</td>
+                                            <td>"I'm writing a brief report comparing solar and wind energy technologies for a high school science class. Please explain:
+1. How each technology works (in simple terms)
+2. The costs and efficiency of each
+3. Environmental impacts
+4. Recent technological improvements (last 5 years)
+Use bullet points where appropriate and include some numbers/statistics to support key points."</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                <h4>Coding Example</h4>
+                                <div class="comparison-table">
+                                    <table>
+                                        <tr>
+                                            <th>Weak Prompt</th>
+                                            <th>Strong Prompt</th>
+                                        </tr>
+                                        <tr>
+                                            <td>"Write Python code to analyze data."</td>
+                                            <td>"Write Python code using pandas to:
+1. Read a CSV file containing customer purchase data (columns: customer_id, purchase_date, amount, product_category)
+2. Calculate the total purchase amount by product_category
+3. Identify the top 3 customers by total spending
+4. Create a simple visualization of monthly sales trends
+I'm an intermediate Python programmer, so please include comments explaining any complex operations. Use best practices for error handling."</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Compare these example transformations:</p>
+                    <ul>
+                        <li><strong>Weak:</strong> "Write me an email about the project delay."</li>
+                        <li><strong>Strong:</strong> "Write a professional email to our client Acme Corp about a 2-week delay..."</li>
+                    </ul>
+                    <ul>
+                        <li><strong>Weak:</strong> "Help with my Python code."</li>
+                        <li><strong>Strong:</strong> "Review this Python function that calculates loan payments. It's giving incorrect results..."</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Remember:</strong> Claude works best when given clear, specific instructions with appropriate context. The quality of your prompts directly impacts the quality of Claude's responses.</p>
+                    </div>
+                    
+                    <a href="https://www.anthropic.com/news/claude-instant-tips" class="cta-button" target="_blank">More Prompting Tips</a>
+                </div>
+
+                <!-- Advanced Features Tab (with nested iTabs) -->
+                <div id="advanced-features" class="tab-content">
+                    <h2>Advanced Claude Features</h2>
+                    
+                    <p>Beyond basic conversations, Claude offers several advanced capabilities that can dramatically expand its usefulness. These features enable more complex workflows and use cases.</p>
+                    
+                    <h3>Working with Files
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="files-detail">i</span>
+                            <div id="files-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Detailed File Handling Guide</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can analyze various file types to extract insights, answer questions, and process data:</p>
+                                
+                                <h4>Supported File Types</h4>
+                                <ul>
+                                    <li><strong>Text files</strong> (.txt)</li>
+                                    <li><strong>PDFs</strong> - including complex formatting and tables</li>
+                                    <li><strong>Word documents</strong> (.docx)</li>
+                                    <li><strong>Spreadsheets</strong> (.csv, .xlsx)</li>
+                                    <li><strong>Presentations</strong> (.pptx)</li>
+                                    <li><strong>Images</strong> (.jpg, .png) - Claude can analyze visual content</li>
+                                    <li><strong>Code files</strong> (.py, .js, .html, etc.)</li>
+                                </ul>
+                                
+                                <h4>File Analysis Techniques</h4>
+                                <ol>
+                                    <li><strong>Ask specific questions</strong> about the file content</li>
+                                    <li>Request <strong>summaries of specific sections</strong> rather than the entire document</li>
+                                    <li>Ask Claude to <strong>extract specific data points</strong> or patterns</li>
+                                    <li>Have Claude <strong>explain complex parts</strong> in simpler terms</li>
+                                    <li>Request <strong>comparisons between different sections</strong> or documents</li>
+                                </ol>
+                                
+                                <h4>File Size Limitations</h4>
+                                <p>While Claude can handle large files, there are practical limitations:</p>
+                                <ul>
+                                    <li>Maximum file size depends on your subscription</li>
+                                    <li>Very large files may need to be broken into smaller chunks</li>
+                                    <li>Consider asking Claude to focus on specific sections of large documents</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude can analyze various documents and extract insights:</p>
+                    <ul>
+                        <li>Upload PDFs, Word documents, spreadsheets, images, and more</li>
+                        <li>Ask questions about the document content</li>
+                        <li>Extract specific information or summarize key points</li>
+                        <li>Compare information across multiple documents</li>
+                    </ul>
+                    
+                    <h3>Using Artifacts
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="artifacts-detail">i</span>
+                            <div id="artifacts-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Understanding Artifacts</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Artifacts are special outputs Claude can create that maintain formatting and can be easily updated:</p>
+                                
+                                <h4>Artifact Types</h4>
+                                <ul>
+                                    <li><strong>Code artifacts</strong> - for programming content</li>
+                                    <li><strong>Markdown artifacts</strong> - for formatted text</li>
+                                    <li><strong>SVG artifacts</strong> - for vector graphics</li>
+                                    <li><strong>HTML artifacts</strong> - for web content</li>
+                                    <li><strong>React components</strong> - for interactive elements</li>
+                                    <li><strong>Mermaid diagrams</strong> - for flowcharts and diagrams</li>
+                                </ul>
+                                
+                                <h4>Artifact Commands</h4>
+                                <ul>
+                                    <li><strong>Create</strong> - Generate a new artifact</li>
+                                    <li><strong>Update</strong> - Modify part of an existing artifact</li>
+                                    <li><strong>Rewrite</strong> - Replace an entire artifact</li>
+                                </ul>
+                                
+                                <h4>Effective Artifact Usage</h4>
+                                <p>When to request artifacts:</p>
+                                <ul>
+                                    <li>Creating original writing (stories, essays, reports)</li>
+                                    <li>Generating code solutions</li>
+                                    <li>Designing visualizations or diagrams</li>
+                                    <li>Creating structured documents with multiple sections</li>
+                                    <li>Content that will be edited or expanded</li>
+                                </ul>
+                                
+                                <h4>Example Request</h4>
+                                <p>"Please create a markdown artifact with a structured guide to machine learning algorithms. Include sections for supervised, unsupervised, and reinforcement learning, with examples of each."</p>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Artifacts are Claude's way of creating structured, formatted content:</p>
+                    <ul>
+                        <li>Create code artifacts for programming solutions</li>
+                        <li>Generate markdown documents for structured content</li>
+                        <li>Build visualizations like SVGs and Mermaid diagrams</li>
+                        <li>Develop interactive components with React artifacts</li>
+                    </ul>
+                    
+                    <h3>Web Search
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="search-detail">i</span>
+                            <div id="search-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Leveraging Claude's Web Search</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude's web search feature connects it to real-time information from the internet:</p>
+                                
+                                <h4>When to Use Web Search</h4>
+                                <ul>
+                                    <li><strong>Current events</strong> beyond Claude's knowledge cutoff</li>
+                                    <li><strong>Up-to-date statistics</strong> and data</li>
+                                    <li><strong>Recent product releases</strong> or developments</li>
+                                    <li><strong>Fact-checking</strong> specific claims</li>
+                                    <li><strong>Research</strong> on specialized or niche topics</li>
+                                </ul>
+                                
+                                <h4>Effective Search Prompting</h4>
+                                <ol>
+                                    <li><strong>Be specific</strong> about what information you need</li>
+                                    <li>Include <strong>relevant keywords</strong> for better search results</li>
+                                    <li>Ask for <strong>information from particular sources</strong> when appropriate</li>
+                                    <li>Request <strong>time-specific information</strong> when recency matters</li>
+                                    <li>Ask Claude to <strong>compare information from multiple sources</strong> for controversial topics</li>
+                                </ol>
+                                
+                                <h4>Search Limitations</h4>
+                                <ul>
+                                    <li>Claude cannot access paywalled content</li>
+                                    <li>Search results may sometimes be incomplete</li>
+                                    <li>Claude must respect copyright when sharing search results</li>
+                                    <li>Some searches may not yield relevant results</li>
+                                </ul>
+                                
+                                <h4>Example Search Requests</h4>
+                                <ul>
+                                    <li>"Please search for the latest developments in fusion energy research from the past 6 months."</li>
+                                    <li>"Can you search for current statistics on remote work adoption in the tech industry?"</li>
+                                    <li>"Please look up the specifications of the latest iPhone model and compare it to the previous generation."</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude can search the web to provide up-to-date information:</p>
+                    <ul>
+                        <li>Request current information beyond Claude's training data</li>
+                        <li>Find recent statistics, news, or research</li>
+                        <li>Verify facts and get the latest developments</li>
+                        <li>Claude will cite sources when using web search</li>
+                    </ul>
+                    
+                    <h3>Vision Capabilities
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="vision-detail">i</span>
+                            <div id="vision-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Claude's Vision Capabilities</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can analyze and understand images to varying degrees:</p>
+                                
+                                <h4>Image Analysis Capabilities</h4>
+                                <ul>
+                                    <li><strong>Describe image content</strong> in detail</li>
+                                    <li><strong>Analyze charts and graphs</strong> to extract insights</li>
+                                    <li><strong>Read text within images</strong> (OCR capability)</li>
+                                    <li><strong>Identify objects, scenes, and activities</strong></li>
+                                    <li><strong>Analyze screenshots</strong> of interfaces or websites</li>
+                                    <li><strong>Interpret diagrams</strong> and explain what they show</li>
+                                </ul>
+                                
+                                <h4>Effective Image Prompting</h4>
+                                <ol>
+                                    <li>Upload a clear, high-resolution image</li>
+                                    <li>Ask specific questions about what you want to learn from the image</li>
+                                    <li>Provide context about the image if it's specialized content</li>
+                                    <li>For charts/graphs, ask Claude to extract specific data points</li>
+                                    <li>For documents, ask Claude to focus on particular sections</li>
+                                </ol>
+                                
+                                <h4>Vision Limitations</h4>
+                                <p>Claude has several limitations when working with images:</p>
+                                <ul>
+                                    <li>Cannot recognize specific individuals (Claude is face-blind)</li>
+                                    <li>May struggle with very low-quality or blurry images</li>
+                                    <li>Cannot access content from QR codes or barcodes in images</li>
+                                    <li>May have difficulty with highly specialized visual content without context</li>
+                                </ul>
+                                
+                                <h4>Example Vision Tasks</h4>
+                                <ul>
+                                    <li>Analyzing receipt photos to extract cost information</li>
+                                    <li>Interpreting scientific figures from research papers</li>
+                                    <li>Explaining complex diagrams or flowcharts</li>
+                                    <li>Extracting text from screenshots or photos of documents</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude can analyze images to extract information:</p>
+                    <ul>
+                        <li>Describe image content and identify objects</li>
+                        <li>Extract text from images (OCR capability)</li>
+                        <li>Analyze charts, graphs, and diagrams</li>
+                        <li>Interpret screenshots and visual information</li>
+                    </ul>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Code Analysis & Generation
+                                <span class="nested-itab">
+                                    <span class="itab-indicator" data-itab="code-detail">i</span>
+                                </span>
+                            </div>
+                            <p>Claude can write, explain, debug, and optimize code in many programming languages.</p>
+                            
+                            <div id="code-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Claude's Coding Capabilities</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude excels at various coding tasks across multiple programming languages:</p>
+                                
+                                <h4>Supported Languages</h4>
+                                <ul>
+                                    <li>Python</li>
+                                    <li>JavaScript/TypeScript</li>
+                                    <li>Java</li>
+                                    <li>C/C++</li>
+                                    <li>HTML/CSS</li>
+                                    <li>SQL</li>
+                                    <li>Ruby</li>
+                                    <li>Go</li>
+                                    <li>And many more...</li>
+                                </ul>
+                                
+                                <h4>Code Capabilities</h4>
+                                <ul>
+                                    <li><strong>Generation</strong>: Write new code from specifications</li>
+                                    <li><strong>Explanation</strong>: Understand and explain existing code</li>
+                                    <li><strong>Debugging</strong>: Find and fix issues in problematic code</li>
+                                    <li><strong>Optimization</strong>: Improve performance or readability</li>
+                                    <li><strong>Refactoring</strong>: Restructure code while preserving functionality</li>
+                                    <li><strong>Documentation</strong>: Add comments or create documentation</li>
+                                </ul>
+                                
+                                <h4>Best Practices for Coding with Claude</h4>
+                                <ol>
+                                    <li>Be specific about programming language and version</li>
+                                    <li>Explain your level of programming experience</li>
+                                    <li>Provide context about the larger project or system</li>
+                                    <li>Specify any libraries or frameworks you're using</li>
+                                    <li>Include error messages or outputs when debugging</li>
+                                </ol>
+                                
+                                <h4>Example Coding Request</h4>
+                                <p>"I need a Python function that takes a list of dictionaries (each containing 'name' and 'score' keys) and returns the names of the top 3 scorers. If there are ties, prioritize alphabetical order of names. Use Python 3.8+ features and include comprehensive error handling."</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Multi-Turn Conversations</div>
+                            <p>Claude maintains context throughout complex conversations spanning multiple exchanges.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Thought Process Breakdown</div>
+                            <p>Ask Claude to show its reasoning step-by-step for complex problems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Pro Tip:</strong> Combine multiple advanced features for powerful workflows - for example, upload a document, ask Claude to analyze it, and then create an artifact summarizing the key points.</p>
+                    </div>
+                    
+                    <a href="https://www.anthropic.com/claude" class="cta-button" target="_blank">Explore Claude's Capabilities</a>
+                </div>
+
+                <!-- Use Cases Tab -->
+                <div id="use-cases" class="tab-content">
+                    <h2>Practical Use Cases</h2>
+                    
+                    <p>Claude AI excels in a wide range of applications. Here are some of the most effective ways to put Claude to work:</p>
+                    
+                    <h3>Content Creation
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="content-detail">i</span>
+                            <div id="content-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Content Creation with Claude</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can assist with virtually any writing task:</p>
+                                
+                                <h4>Long-Form Content</h4>
+                                <ul>
+                                    <li><strong>Blog Posts</strong>: Research-based articles on complex topics</li>
+                                    <li><strong>Reports</strong>: Data-driven business or academic reports</li>
+                                    <li><strong>White Papers</strong>: Detailed explorations of specialized subjects</li>
+                                    <li><strong>E-books</strong>: Multi-chapter educational or entertainment content</li>
+                                </ul>
+                                
+                                <h4>Professional Communications</h4>
+                                <ul>
+                                    <li><strong>Emails</strong>: Drafting professional correspondence for various situations</li>
+                                    <li><strong>Presentations</strong>: Creating slide content and speaking notes</li>
+                                    <li><strong>Proposals</strong>: Structuring business or project proposals</li>
+                                    <li><strong>Documentation</strong>: Technical or process documentation</li>
+                                </ul>
+                                
+                                <h4>Creative Writing</h4>
+                                <ul>
+                                    <li><strong>Stories</strong>: Fiction in various genres and styles</li>
+                                    <li><strong>Poetry</strong>: Various poetic forms and structures</li>
+                                    <li><strong>Scripts</strong>: Dialogue and narrative for various media</li>
+                                    <li><strong>Character Development</strong>: Creating detailed character profiles</li>
+                                </ul>
+                                
+                                <h4>Content Optimization</h4>
+                                <ul>
+                                    <li><strong>Editing</strong>: Grammar, style, and clarity improvements</li>
+                                    <li><strong>Rewriting</strong>: Adapting content for different audiences or formats</li>
+                                    <li><strong>Summarization</strong>: Condensing long content into key points</li>
+                                    <li><strong>Expansion</strong>: Elaborating on outlines or brief content</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Writing Assistant</div>
+                            <p>Draft, edit, and refine various types of content including blog posts, emails, reports, and creative writing.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Idea Generation</div>
+                            <p>Brainstorm concepts, outlines, and approaches for creative or business projects.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Content Transformation</div>
+                            <p>Convert content between different formats, styles, or complexity levels.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Research & Analysis
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="research-detail">i</span>
+                            <div id="research-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Research Applications</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can assist with various aspects of research and analysis:</p>
+                                
+                                <h4>Literature Review</h4>
+                                <ul>
+                                    <li>Summarize key findings from research papers</li>
+                                    <li>Extract methodologies and compare approaches</li>
+                                    <li>Identify patterns and trends across multiple sources</li>
+                                    <li>Generate comprehensive literature review sections</li>
+                                </ul>
+                                
+                                <h4>Data Analysis Assistance</h4>
+                                <ul>
+                                    <li>Help interpret data visualization results</li>
+                                    <li>Suggest appropriate statistical methods</li>
+                                    <li>Write code for data cleaning and analysis</li>
+                                    <li>Explain complex statistical concepts</li>
+                                </ul>
+                                
+                                <h4>Research Planning</h4>
+                                <ul>
+                                    <li>Help design research methodologies</li>
+                                    <li>Develop survey questions and interview protocols</li>
+                                    <li>Create research plans and timelines</li>
+                                    <li>Generate hypotheses based on existing literature</li>
+                                </ul>
+                                
+                                <h4>Market Research</h4>
+                                <ul>
+                                    <li>Analyze industry trends and competitive landscapes</li>
+                                    <li>Help interpret consumer behavior data</li>
+                                    <li>Generate questions for focus groups or interviews</li>
+                                    <li>Synthesize findings into actionable insights</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Document Analysis</div>
+                            <p>Extract insights from reports, papers, and long-form content by uploading files.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Data Interpretation</div>
+                            <p>Analyze spreadsheets, charts, and data visualizations to extract meaningful insights.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Literature Review</div>
+                            <p>Summarize and extract key points from multiple sources on a particular topic.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Educational Applications</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Custom Explanations</div>
+                            <p>Explain complex concepts at different educational levels with customized examples.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Study Aid</div>
+                            <p>Create practice questions, flashcards, study guides, and learning materials.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Feedback Provider</div>
+                            <p>Get constructive feedback on assignments, papers, or creative work.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Professional Applications</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Programming Assistant</div>
+                            <p>Write, explain, debug, and optimize code across various programming languages.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Business Documentation</div>
+                            <p>Create proposals, reports, plans, and professional communications.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Process Optimization</div>
+                            <p>Analyze workflows and suggest improvements or automation opportunities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Case Study:</strong> A marketing team used Claude to analyze 500+ customer reviews, extracting key themes and sentiment patterns. Claude then helped draft data-driven content addressing customer pain points, resulting in a 32% increase in engagement metrics.</p>
+                    </div>
+                    
+                    <h3>Creative Applications</h3>
+                    <ul>
+                        <li><strong>Story Development:</strong> Plot creation, character development, dialogue writing</li>
+                        <li><strong>Creative Exploration:</strong> Generating novel ideas and perspectives</li>
+                        <li><strong>Design Assistance:</strong> Conceptual development and content for design projects</li>
+                    </ul>
+                    
+                    <a href="https://www.anthropic.com/claude-use-cases" class="cta-button" target="_blank">See More Use Cases</a>
+                </div>
+
+                <!-- Resources Tab -->
+                <div id="resources" class="tab-content">
+                    <h2>Claude AI Resources</h2>
+                    
+                    <p>Expand your knowledge and capabilities with these helpful Claude resources:</p>
+                    
+                    <h3>Official Resources
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="official-resources">i</span>
+                            <div id="official-resources" class="nested-itab-content">
+                                <div class="nested-itab-title">Anthropic Official Resources</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>These official sources provide the most accurate and up-to-date information about Claude:</p>
+                                
+                                <h4>Main Website & Documentation</h4>
+                                <ul>
+                                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Product Page</a> - Overview of Claude's capabilities and access options</li>
+                                    <li><a href="https://docs.anthropic.com/claude/" target="_blank">Claude Documentation</a> - Comprehensive technical documentation</li>
+                                    <li><a href="https://www.anthropic.com/blog" target="_blank">Anthropic Blog</a> - Latest announcements and technical insights</li>
+                                </ul>
+                                
+                                <h4>Research Publications</h4>
+                                <ul>
+                                    <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research</a> - Scientific papers and technical reports</li>
+                                    <li><a href="https://arxiv.org/search/?query=anthropic&searchtype=all" target="_blank">ArXiv Publications</a> - Academic papers from Anthropic researchers</li>
+                                </ul>
+                                
+                                <h4>API Resources</h4>
+                                <ul>
+                                    <li><a href="https://docs.anthropic.com/claude/reference/" target="_blank">API Reference</a> - Detailed API documentation</li>
+                                    <li><a href="https://docs.anthropic.com/claude/docs/example-claude-prompt-library" target="_blank">Prompt Library</a> - Example prompts for various use cases</li>
+                                    <li><a href="https://github.com/anthropics" target="_blank">Anthropic GitHub</a> - Official libraries and code examples</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <ul>
+                        <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Official Website</a> - Overview and access</li>
+                        <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research</a> - Background on Claude's development</li>
+                        <li><a href="https://docs.anthropic.com/claude/" target="_blank">Claude API Documentation</a> - For developers</li>
+                        <li><a href="https://www.anthropic.com/news" target="_blank">Anthropic Blog</a> - Latest updates and features</li>
+                    </ul>
+                    
+                    <h3>Learning Materials</h3>
+                    <ul>
+                        <li><a href="https://www.anthropic.com/news/claude-prompt-engineering" target="_blank">Prompt Engineering Guide</a> - Official prompting techniques</li>
+                        <li><a href="https://www.youtube.com/results?search_query=claude+ai+tutorial" target="_blank">Video Tutorials</a> -
+                            <div id="examples-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Prompt Improvement Examples</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>See how prompts can be improved for better results:</p>
+                                
+                                <h4>Writing Assistant Example</h4>
+                                <div class="comparison-table">
+                                    <table>
+                                        <tr>
+                                            <th>Weak Prompt</th>
+                                            <th>Strong Prompt</th>
+                                        </tr>
+                                        <tr>
+                                            <td>"Write me an email about the project delay."</td>
+                                            <td>"Write a professional email to our client Acme Corp about a 2-week delay to the website redesign project. Explain that the delay is due to unexpected API integration issues, offer two potential solutions, and maintain our professional relationship. The tone should be apologetic but confident."</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                <h4>Research Example</h4>
+                                <div class="comparison-table">
+                                    <table>
+                                        <tr>
+                                            <th>Weak Prompt</th>
+                                            <th>Strong Prompt</th>
+                                        </tr>
+                                        <tr>
+                                            <td>"Tell me about renewable energy."</td>
+                                            <td>"I'm writing a brief report comparing solar and wind energy technologies for a high school science class. Please explain:
+1. How each technology works (in simple terms)
+2. The costs and efficiency of each
+3. Environmental impacts
+4. Recent technological improvements (last 5 years)
+Use bullet points where appropriate and include some numbers/statistics to support key points."</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                <h4>Coding Example</h4>
+                                <div class="comparison-table">
+                                    <table>
+                                        <tr>
+                                            <th>Weak Prompt</th>
+                                            <th>Strong Prompt</th>
+                                        </tr>
+                                        <tr>
+                                            <td>"Write Python code to analyze data."</td>
+                                            <td>"Write Python code using pandas to:
+1. Read a CSV file containing customer purchase data (columns: customer_id, purchase_date, amount, product_category)
+2. Calculate the total purchase amount by product_category
+3. Identify the top 3 customers by total spending
+4. Create a simple visualization of monthly sales trends
+I'm an intermediate Python programmer, so please include comments explaining any complex operations. Use best practices for error handling."</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Compare these example transformations:</p>
+                    <ul>
+                        <li><strong>Weak:</strong> "Write me an email about the project delay."</li>
+                        <li><strong>Strong:</strong> "Write a professional email to our client Acme Corp about a 2-week delay..."</li>
+                    </ul>
+                    <ul>
+                        <li><strong>Weak:</strong> "Help with my Python code."</li>
+                        <li><strong>Strong:</strong> "Review this Python function that calculates loan payments. It's giving incorrect results..."</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Remember:</strong> Claude works best when given clear, specific instructions with appropriate context. The quality of your prompts directly impacts the quality of Claude's responses.</p>
+                    </div>
+                    
+                    <a href="https://www.anthropic.com/news/claude-instant-tips" class="cta-button" target="_blank">More Prompting Tips</a>
+                </div>
+
+                <!-- Advanced Features Tab (with nested iTabs) -->
+                <div id="advanced-features" class="tab-content">
+                    <h2>Advanced Claude Features</h2>
+                    
+                    <p>Beyond basic conversations, Claude offers several advanced capabilities that can dramatically expand its usefulness. These features enable more complex workflows and use cases.</p>
+                    
+                    <h3>Working with Files
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="files-detail">i</span>
+                            <div id="files-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Detailed File Handling Guide</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can analyze various file types to extract insights, answer questions, and process data:</p>
+                                
+                                <h4>Supported File Types</h4>
+                                <ul>
+                                    <li><strong>Text files</strong> (.txt)</li>
+                                    <li><strong>PDFs</strong> - including complex formatting and tables</li>
+                                    <li><strong>Word documents</strong> (.docx)</li>
+                                    <li><strong>Spreadsheets</strong> (.csv, .xlsx)</li>
+                                    <li><strong>Presentations</strong> (.pptx)</li>
+                                    <li><strong>Images</strong> (.jpg, .png) - Claude can analyze visual content</li>
+                                    <li><strong>Code files</strong> (.py, .js, .html, etc.)</li>
+                                </ul>
+                                
+                                <h4>File Analysis Techniques</h4>
+                                <ol>
+                                    <li><strong>Ask specific questions</strong> about the file content</li>
+                                    <li>Request <strong>summaries of specific sections</strong> rather than the entire document</li>
+                                    <li>Ask Claude to <strong>extract specific data points</strong> or patterns</li>
+                                    <li>Have Claude <strong>explain complex parts</strong> in simpler terms</li>
+                                    <li>Request <strong>comparisons between different sections</strong> or documents</li>
+                                </ol>
+                                
+                                <h4>File Size Limitations</h4>
+                                <p>While Claude can handle large files, there are practical limitations:</p>
+                                <ul>
+                                    <li>Maximum file size depends on your subscription</li>
+                                    <li>Very large files may need to be broken into smaller chunks</li>
+                                    <li>Consider asking Claude to focus on specific sections of large documents</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude can analyze various documents and extract insights:</p>
+                    <ul>
+                        <li>Upload PDFs, Word documents, spreadsheets, images, and more</li>
+                        <li>Ask questions about the document content</li>
+                        <li>Extract specific information or summarize key points</li>
+                        <li>Compare information across multiple documents</li>
+                    </ul>
+                    
+                    <h3>Using Artifacts
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="artifacts-detail">i</span>
+                            <div id="artifacts-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Understanding Artifacts</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Artifacts are special outputs Claude can create that maintain formatting and can be easily updated:</p>
+                                
+                                <h4>Artifact Types</h4>
+                                <ul>
+                                    <li><strong>Code artifacts</strong> - for programming content</li>
+                                    <li><strong>Markdown artifacts</strong> - for formatted text</li>
+                                    <li><strong>SVG artifacts</strong> - for vector graphics</li>
+                                    <li><strong>HTML artifacts</strong> - for web content</li>
+                                    <li><strong>React components</strong> - for interactive elements</li>
+                                    <li><strong>Mermaid diagrams</strong> - for flowcharts and diagrams</li>
+                                </ul>
+                                
+                                <h4>Artifact Commands</h4>
+                                <ul>
+                                    <li><strong>Create</strong> - Generate a new artifact</li>
+                                    <li><strong>Update</strong> - Modify part of an existing artifact</li>
+                                    <li><strong>Rewrite</strong> - Replace an entire artifact</li>
+                                </ul>
+                                
+                                <h4>Effective Artifact Usage</h4>
+                                <p>When to request artifacts:</p>
+                                <ul>
+                                    <li>Creating original writing (stories, essays, reports)</li>
+                                    <li>Generating code solutions</li>
+                                    <li>Designing visualizations or diagrams</li>
+                                    <li>Creating structured documents with multiple sections</li>
+                                    <li>Content that will be edited or expanded</li>
+                                </ul>
+                                
+                                <h4>Example Request</h4>
+                                <p>"Please create a markdown artifact with a structured guide to machine learning algorithms. Include sections for supervised, unsupervised, and reinforcement learning, with examples of each."</p>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Artifacts are Claude's way of creating structured, formatted content:</p>
+                    <ul>
+                        <li>Create code artifacts for programming solutions</li>
+                        <li>Generate markdown documents for structured content</li>
+                        <li>Build visualizations like SVGs and Mermaid diagrams</li>
+                        <li>Develop interactive components with React artifacts</li>
+                    </ul>
+                    
+                    <h3>Web Search
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="search-detail">i</span>
+                            <div id="search-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Leveraging Claude's Web Search</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude's web search feature connects it to real-time information from the internet:</p>
+                                
+                                <h4>When to Use Web Search</h4>
+                                <ul>
+                                    <li><strong>Current events</strong> beyond Claude's knowledge cutoff</li>
+                                    <li><strong>Up-to-date statistics</strong> and data</li>
+                                    <li><strong>Recent product releases</strong> or developments</li>
+                                    <li><strong>Fact-checking</strong> specific claims</li>
+                                    <li><strong>Research</strong> on specialized or niche topics</li>
+                                </ul>
+                                
+                                <h4>Effective Search Prompting</h4>
+                                <ol>
+                                    <li><strong>Be specific</strong> about what information you need</li>
+                                    <li>Include <strong>relevant keywords</strong> for better search results</li>
+                                    <li>Ask for <strong>information from particular sources</strong> when appropriate</li>
+                                    <li>Request <strong>time-specific information</strong> when recency matters</li>
+                                    <li>Ask Claude to <strong>compare information from multiple sources</strong> for controversial topics</li>
+                                </ol>
+                                
+                                <h4>Search Limitations</h4>
+                                <ul>
+                                    <li>Claude cannot access paywalled content</li>
+                                    <li>Search results may sometimes be incomplete</li>
+                                    <li>Claude must respect copyright when sharing search results</li>
+                                    <li>Some searches may not yield relevant results</li>
+                                </ul>
+                                
+                                <h4>Example Search Requests</h4>
+                                <ul>
+                                    <li>"Please search for the latest developments in fusion energy research from the past 6 months."</li>
+                                    <li>"Can you search for current statistics on remote work adoption in the tech industry?"</li>
+                                    <li>"Please look up the specifications of the latest iPhone model and compare it to the previous generation."</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude can search the web to provide up-to-date information:</p>
+                    <ul>
+                        <li>Request current information beyond Claude's training data</li>
+                        <li>Find recent statistics, news, or research</li>
+                        <li>Verify facts and get the latest developments</li>
+                        <li>Claude will cite sources when using web search</li>
+                    </ul>
+                    
+                    <h3>Vision Capabilities
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="vision-detail">i</span>
+                            <div id="vision-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Claude's Vision Capabilities</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can analyze and understand images to varying degrees:</p>
+                                
+                                <h4>Image Analysis Capabilities</h4>
+                                <ul>
+                                    <li><strong>Describe image content</strong> in detail</li>
+                                    <li><strong>Analyze charts and graphs</strong> to extract insights</li>
+                                    <li><strong>Read text within images</strong> (OCR capability)</li>
+                                    <li><strong>Identify objects, scenes, and activities</strong></li>
+                                    <li><strong>Analyze screenshots</strong> of interfaces or websites</li>
+                                    <li><strong>Interpret diagrams</strong> and explain what they show</li>
+                                </ul>
+                                
+                                <h4>Effective Image Prompting</h4>
+                                <ol>
+                                    <li>Upload a clear, high-resolution image</li>
+                                    <li>Ask specific questions about what you want to learn from the image</li>
+                                    <li>Provide context about the image if it's specialized content</li>
+                                    <li>For charts/graphs, ask Claude to extract specific data points</li>
+                                    <li>For documents, ask Claude to focus on particular sections</li>
+                                </ol>
+                                
+                                <h4>Vision Limitations</h4>
+                                <p>Claude has several limitations when working with images:</p>
+                                <ul>
+                                    <li>Cannot recognize specific individuals (Claude is face-blind)</li>
+                                    <li>May struggle with very low-quality or blurry images</li>
+                                    <li>Cannot access content from QR codes or barcodes in images</li>
+                                    <li>May have difficulty with highly specialized visual content without context</li>
+                                </ul>
+                                
+                                <h4>Example Vision Tasks</h4>
+                                <ul>
+                                    <li>Analyzing receipt photos to extract cost information</li>
+                                    <li>Interpreting scientific figures from research papers</li>
+                                    <li>Explaining complex diagrams or flowcharts</li>
+                                    <li>Extracting text from screenshots or photos of documents</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <p>Claude can analyze images to extract information:</p>
+                    <ul>
+                        <li>Describe image content and identify objects</li>
+                        <li>Extract text from images (OCR capability)</li>
+                        <li>Analyze charts, graphs, and diagrams</li>
+                        <li>Interpret screenshots and visual information</li>
+                    </ul>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Code Analysis & Generation
+                                <span class="nested-itab">
+                                    <span class="itab-indicator" data-itab="code-detail">i</span>
+                                </span>
+                            </div>
+                            <p>Claude can write, explain, debug, and optimize code in many programming languages.</p>
+                            
+                            <div id="code-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Claude's Coding Capabilities</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude excels at various coding tasks across multiple programming languages:</p>
+                                
+                                <h4>Supported Languages</h4>
+                                <ul>
+                                    <li>Python</li>
+                                    <li>JavaScript/TypeScript</li>
+                                    <li>Java</li>
+                                    <li>C/C++</li>
+                                    <li>HTML/CSS</li>
+                                    <li>SQL</li>
+                                    <li>Ruby</li>
+                                    <li>Go</li>
+                                    <li>And many more...</li>
+                                </ul>
+                                
+                                <h4>Code Capabilities</h4>
+                                <ul>
+                                    <li><strong>Generation</strong>: Write new code from specifications</li>
+                                    <li><strong>Explanation</strong>: Understand and explain existing code</li>
+                                    <li><strong>Debugging</strong>: Find and fix issues in problematic code</li>
+                                    <li><strong>Optimization</strong>: Improve performance or readability</li>
+                                    <li><strong>Refactoring</strong>: Restructure code while preserving functionality</li>
+                                    <li><strong>Documentation</strong>: Add comments or create documentation</li>
+                                </ul>
+                                
+                                <h4>Best Practices for Coding with Claude</h4>
+                                <ol>
+                                    <li>Be specific about programming language and version</li>
+                                    <li>Explain your level of programming experience</li>
+                                    <li>Provide context about the larger project or system</li>
+                                    <li>Specify any libraries or frameworks you're using</li>
+                                    <li>Include error messages or outputs when debugging</li>
+                                </ol>
+                                
+                                <h4>Example Coding Request</h4>
+                                <p>"I need a Python function that takes a list of dictionaries (each containing 'name' and 'score' keys) and returns the names of the top 3 scorers. If there are ties, prioritize alphabetical order of names. Use Python 3.8+ features and include comprehensive error handling."</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Multi-Turn Conversations</div>
+                            <p>Claude maintains context throughout complex conversations spanning multiple exchanges.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Thought Process Breakdown</div>
+                            <p>Ask Claude to show its reasoning step-by-step for complex problems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Pro Tip:</strong> Combine multiple advanced features for powerful workflows - for example, upload a document, ask Claude to analyze it, and then create an artifact summarizing the key points.</p>
+                    </div>
+                    
+                    <a href="https://www.anthropic.com/claude" class="cta-button" target="_blank">Explore Claude's Capabilities</a>
+                </div>
+
+                <!-- Use Cases Tab -->
+                <div id="use-cases" class="tab-content">
+                    <h2>Practical Use Cases</h2>
+                    
+                    <p>Claude AI excels in a wide range of applications. Here are some of the most effective ways to put Claude to work:</p>
+                    
+                    <h3>Content Creation
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="content-detail">i</span>
+                            <div id="content-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Content Creation with Claude</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can assist with virtually any writing task:</p>
+                                
+                                <h4>Long-Form Content</h4>
+                                <ul>
+                                    <li><strong>Blog Posts</strong>: Research-based articles on complex topics</li>
+                                    <li><strong>Reports</strong>: Data-driven business or academic reports</li>
+                                    <li><strong>White Papers</strong>: Detailed explorations of specialized subjects</li>
+                                    <li><strong>E-books</strong>: Multi-chapter educational or entertainment content</li>
+                                </ul>
+                                
+                                <h4>Professional Communications</h4>
+                                <ul>
+                                    <li><strong>Emails</strong>: Drafting professional correspondence for various situations</li>
+                                    <li><strong>Presentations</strong>: Creating slide content and speaking notes</li>
+                                    <li><strong>Proposals</strong>: Structuring business or project proposals</li>
+                                    <li><strong>Documentation</strong>: Technical or process documentation</li>
+                                </ul>
+                                
+                                <h4>Creative Writing</h4>
+                                <ul>
+                                    <li><strong>Stories</strong>: Fiction in various genres and styles</li>
+                                    <li><strong>Poetry</strong>: Various poetic forms and structures</li>
+                                    <li><strong>Scripts</strong>: Dialogue and narrative for various media</li>
+                                    <li><strong>Character Development</strong>: Creating detailed character profiles</li>
+                                </ul>
+                                
+                                <h4>Content Optimization</h4>
+                                <ul>
+                                    <li><strong>Editing</strong>: Grammar, style, and clarity improvements</li>
+                                    <li><strong>Rewriting</strong>: Adapting content for different audiences or formats</li>
+                                    <li><strong>Summarization</strong>: Condensing long content into key points</li>
+                                    <li><strong>Expansion</strong>: Elaborating on outlines or brief content</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Writing Assistant</div>
+                            <p>Draft, edit, and refine various types of content including blog posts, emails, reports, and creative writing.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Idea Generation</div>
+                            <p>Brainstorm concepts, outlines, and approaches for creative or business projects.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Content Transformation</div>
+                            <p>Convert content between different formats, styles, or complexity levels.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Research & Analysis
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="research-detail">i</span>
+                            <div id="research-detail" class="nested-itab-content">
+                                <div class="nested-itab-title">Research Applications</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>Claude can assist with various aspects of research and analysis:</p>
+                                
+                                <h4>Literature Review</h4>
+                                <ul>
+                                    <li>Summarize key findings from research papers</li>
+                                    <li>Extract methodologies and compare approaches</li>
+                                    <li>Identify patterns and trends across multiple sources</li>
+                                    <li>Generate comprehensive literature review sections</li>
+                                </ul>
+                                
+                                <h4>Data Analysis Assistance</h4>
+                                <ul>
+                                    <li>Help interpret data visualization results</li>
+                                    <li>Suggest appropriate statistical methods</li>
+                                    <li>Write code for data cleaning and analysis</li>
+                                    <li>Explain complex statistical concepts</li>
+                                </ul>
+                                
+                                <h4>Research Planning</h4>
+                                <ul>
+                                    <li>Help design research methodologies</li>
+                                    <li>Develop survey questions and interview protocols</li>
+                                    <li>Create research plans and timelines</li>
+                                    <li>Generate hypotheses based on existing literature</li>
+                                </ul>
+                                
+                                <h4>Market Research</h4>
+                                <ul>
+                                    <li>Analyze industry trends and competitive landscapes</li>
+                                    <li>Help interpret consumer behavior data</li>
+                                    <li>Generate questions for focus groups or interviews</li>
+                                    <li>Synthesize findings into actionable insights</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Document Analysis</div>
+                            <p>Extract insights from reports, papers, and long-form content by uploading files.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Data Interpretation</div>
+                            <p>Analyze spreadsheets, charts, and data visualizations to extract meaningful insights.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Literature Review</div>
+                            <p>Summarize and extract key points from multiple sources on a particular topic.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Educational Applications</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Custom Explanations</div>
+                            <p>Explain complex concepts at different educational levels with customized examples.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Study Aid</div>
+                            <p>Create practice questions, flashcards, study guides, and learning materials.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Feedback Provider</div>
+                            <p>Get constructive feedback on assignments, papers, or creative work.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Professional Applications</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-title">Programming Assistant</div>
+                            <p>Write, explain, debug, and optimize code across various programming languages.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Business Documentation</div>
+                            <p>Create proposals, reports, plans, and professional communications.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-title">Process Optimization</div>
+                            <p>Analyze workflows and suggest improvements or automation opportunities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Case Study:</strong> A marketing team used Claude to analyze 500+ customer reviews, extracting key themes and sentiment patterns. Claude then helped draft data-driven content addressing customer pain points, resulting in a 32% increase in engagement metrics.</p>
+                    </div>
+                    
+                    <h3>Creative Applications</h3>
+                    <ul>
+                        <li><strong>Story Development:</strong> Plot creation, character development, dialogue writing</li>
+                        <li><strong>Creative Exploration:</strong> Generating novel ideas and perspectives</li>
+                        <li><strong>Design Assistance:</strong> Conceptual development and content for design projects</li>
+                    </ul>
+                    
+                    <a href="https://www.anthropic.com/claude-use-cases" class="cta-button" target="_blank">See More Use Cases</a>
+                </div>
+
+                <!-- Resources Tab -->
+                <div id="resources" class="tab-content">
+                    <h2>Claude AI Resources</h2>
+                    
+                    <p>Expand your knowledge and capabilities with these helpful Claude resources:</p>
+                    
+                    <h3>Official Resources
+                        <span class="nested-itab">
+                            <span class="itab-indicator" data-itab="official-resources">i</span>
+                            <div id="official-resources" class="nested-itab-content">
+                                <div class="nested-itab-title">Anthropic Official Resources</div>
+                                <span class="nested-itab-close">×</span>
+                                
+                                <p>These official sources provide the most accurate and up-to-date information about Claude:</p>
+                                
+                                <h4>Main Website & Documentation</h4>
+                                <ul>
+                                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Product Page</a> - Overview of Claude's capabilities and access options</li>
+                                    <li><a href="https://docs.anthropic.com/claude/" target="_blank">Claude Documentation</a> - Comprehensive technical documentation</li>
+                                    <li><a href="https://www.anthropic.com/blog" target="_blank">Anthropic Blog</a> - Latest announcements and technical insights</li>
+                                </ul>
+                                
+                                <h4>Research Publications</h4>
+                                <ul>
+                                    <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research</a> - Scientific papers and technical reports</li>
+                                    <li><a href="https://arxiv.org/search/?query=anthropic&searchtype=all" target="_blank">ArXiv Publications</a> - Academic papers from Anthropic researchers</li>
+                                </ul>
+                                
+                                <h4>API Resources</h4>
+                                <ul>
+                                    <li><a href="https://docs.anthropic.com/claude/reference/" target="_blank">API Reference</a> - Detailed API documentation</li>
+                                    <li><a href="https://docs.anthropic.com/claude/docs/example-claude-prompt-library" target="_blank">Prompt Library</a> - Example prompts for various use cases</li>
+                                    <li><a href="https://github.com/anthropics" target="_blank">Anthropic GitHub</a> - Official libraries and code examples</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </h3>
+                    <ul>
+                        <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Official Website</a> - Overview and access</li>
+                        <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research</a> - Background on Claude's development</li>
+                        <li><a href="https://docs.anthropic.com/claude/" target="_blank">Claude API Documentation</a> - For developers</li>
+                        <li><a href="https://www.anthropic.com/news" target="_blank">Anthropic Blog</a> - Latest updates and features</li>
+                    </ul>
+                    
+                    <h3>Learning Materials</h3>
+                    <ul>
+                        <li><a href="https://www.anthropic.com/news/claude-prompt-engineering" target="_blank">Prompt Engineering Guide</a> - Official prompting techniques</li>
+                        <li><a href="https://www.youtube.com/results?search_query=claude+ai+tutorial" target="_blank">Video Tutorials</a> -
+
